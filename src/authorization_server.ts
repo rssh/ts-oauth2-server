@@ -119,7 +119,7 @@ export class AuthorizationServer {
   }
 
   async respondToDeviceAuthorizationRequest(req: RequestInterface): Promise<ResponseInterface> {
-     for(const grant of Object.values(this.enableGrantType)) {
+     for(const grant of Object.values(this.enableGrantTypes)) {
        if (grant.canRespondToDeviceAuthorizationRequest(req)) {
          return grant.respondToDeviceAuthorizationRequest(req);
        }
