@@ -10,7 +10,7 @@ import { AbstractGrant } from "./abstract/abstract.grant";
 
 export class DeviceCodeGrant extends AbstractGrant {
     readonly identifier = "urn:ietf:params:oauth:grant-type:device_code";
-
+  
 
     async respondToAccessTokenRequest(request: RequestInterface, _ : ResponseInterface,
       accessTokenTTL: DateInterval,
@@ -73,6 +73,9 @@ export class DeviceCodeGrant extends AbstractGrant {
     
     }
   
+    canRespondToDeviceAuthorizationRequest(_request: RequestInterface): boolean {
+      return true;
+    }
 
     async respondToDeviceAuthorizationRequest(request: RequestInterface): Promise<ResponseInterface> {
         const clientId = this.getQueryStringParameter("client_id", request);

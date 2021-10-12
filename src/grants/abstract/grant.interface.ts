@@ -25,4 +25,10 @@ export interface GrantInterface {
   validateAuthorizationRequest(request: RequestInterface): Promise<AuthorizationRequest>;
 
   completeAuthorizationRequest(authorizationRequest: AuthorizationRequest): Promise<ResponseInterface>;
+
+  canRespondToDeviceAuthorizationRequest(request: RequestInterface): boolean;
+
+  respondToDeviceAuthorizationRequest(request: RequestInterface): Promise<ResponseInterface>;
+
+
 }

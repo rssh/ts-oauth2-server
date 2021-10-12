@@ -118,6 +118,15 @@ export class AuthorizationServer {
     return await grant.completeAuthorizationRequest(authorizationRequest);
   }
 
+  async respondToDeviceAuthorizationRequest(req: RequestInterface): Promise<ResponseInterface> {
+     for(const grant of Object.values(this.enableGrantType)) {
+       if (grant.canRespondToDeviceAuthorizationRequest(req)) {
+         return grant.respondToDeviceAuthorizationRequest(req);
+       }
+     } 
+     throw OAuthException.unsupportedGrantType();
+  }
+
   /**
    * I am only using this in testing... should it be here?
    * @param grantType

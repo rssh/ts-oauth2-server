@@ -277,6 +277,10 @@ export abstract class AbstractGrant implements GrantInterface {
     return false;
   }
 
+  canRespondToDeviceAuthorizationRequest(_request: RequestInterface): boolean {
+    return false;
+  }
+
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   async completeAuthorizationRequest(_authorizationRequest: AuthorizationRequest): Promise<ResponseInterface> {
     throw new Error("Grant does not support the request");
@@ -289,4 +293,10 @@ export abstract class AbstractGrant implements GrantInterface {
   ): Promise<ResponseInterface> {
     throw new Error("Grant does not support the request");
   }
+
+
+  async respondToDeviceAuthorizationRequest(_request: RequestInterface): Promise<ResponseInterface> {
+    throw new Error("Grant does not support the request");
+  }
+
 }
