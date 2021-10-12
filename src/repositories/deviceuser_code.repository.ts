@@ -1,4 +1,4 @@
-import { OAuthDeviceUserCode } from "src/entities/device_user_code.entity";
+import { OAuthDeviceUserCode } from "../entities/device_user_code.entity";
 import { OAuthClient } from "../entities/client.entity";
 import { OAuthScope } from "../entities/scope.entity";
 

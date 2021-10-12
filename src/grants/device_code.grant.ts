@@ -1,4 +1,5 @@
-import { OAuthUser } from "src";
+
+import { OAuthUser } from "../entities/user.entity";
 import { OAuthException } from "../exceptions/oauth.exception";
 import { RequestInterface } from "../requests/request";
 import { OAuthResponse, ResponseInterface } from "../responses/response";
