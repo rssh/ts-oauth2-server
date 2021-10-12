@@ -1,4 +1,4 @@
-import { OAuthScope } from "src";
+import { OAuthScope } from "./scope.entity";
 
 
 export interface OAuthDeviceUserCode {
