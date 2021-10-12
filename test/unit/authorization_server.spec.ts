@@ -6,6 +6,7 @@ import {
   inMemoryAccessTokenRepository,
   inMemoryAuthCodeRepository,
   inMemoryClientRepository,
+  inMemoryDeviceCodeRepository,
   inMemoryScopeRepository,
   inMemoryUserRepository,
 } from "../../examples/in_memory/repository";
@@ -46,6 +47,7 @@ describe("authorization_server", () => {
       inMemoryAccessTokenRepository,
       inMemoryScopeRepository,
       inMemoryUserRepository,
+      inMemoryDeviceCodeRepository,
       new JwtService("secret-key"),
     );
     refreshGrant = authorizationServer.getGrant("refresh_token");
@@ -198,6 +200,7 @@ describe("authorization_server", () => {
         inMemoryAccessTokenRepository,
         inMemoryScopeRepository,
         inMemoryUserRepository,
+        inMemoryDeviceCodeRepository,
         new JwtService("secret-key"),
       );
       authorizationServer.enableGrantType("authorization_code");

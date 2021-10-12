@@ -2,12 +2,14 @@ import { OAuthException } from "./exceptions/oauth.exception";
 import { GrantIdentifier, GrantInterface } from "./grants/abstract/grant.interface";
 import { AuthCodeGrant } from "./grants/auth_code.grant";
 import { ClientCredentialsGrant } from "./grants/client_credentials.grant";
+import { DeviceCodeGrant } from "./grants/device_code.grant";
 import { ImplicitGrant } from "./grants/implicit.grant";
 import { PasswordGrant } from "./grants/password.grant";
 import { RefreshTokenGrant } from "./grants/refresh_token.grant";
 import { OAuthTokenRepository } from "./repositories/access_token.repository";
 import { OAuthAuthCodeRepository } from "./repositories/auth_code.repository";
 import { OAuthClientRepository } from "./repositories/client.repository";
+import { OAuthDeviceUserCodeRepository } from "./repositories/deviceuser_code.repository";
 import { OAuthScopeRepository } from "./repositories/scope.repository";
 import { OAuthUserRepository } from "./repositories/user.repository";
 import { AuthorizationRequest } from "./requests/authorization.request";
@@ -38,6 +40,7 @@ export class AuthorizationServer {
     private readonly tokenRepository: OAuthTokenRepository,
     private readonly scopeRepository: OAuthScopeRepository,
     private readonly userRepository: OAuthUserRepository,
+    private readonly deviceUserCodeRepository: OAuthDeviceUserCodeRepository,
     private readonly jwt: JwtInterface,
     options?: Partial<AuthorizationServerOptions>,
   ) {
@@ -48,6 +51,7 @@ export class AuthorizationServer {
       OAuthTokenRepository,
       OAuthScopeRepository,
       OAuthUserRepository,
+      OAuthDeviceUserCodeRepository,
       JwtInterface,
     ] = [
       this.authCodeRepository,
@@ -55,6 +59,7 @@ export class AuthorizationServer {
       this.tokenRepository,
       this.scopeRepository,
       this.userRepository,
+      this.deviceUserCodeRepository,
       this.jwt,
     ];
     this.availableGrants = {
@@ -63,6 +68,7 @@ export class AuthorizationServer {
       implicit: new ImplicitGrant(...repos),
       password: new PasswordGrant(...repos),
       refresh_token: new RefreshTokenGrant(...repos),
+      "urn:ietf:params:oauth:grant-type:device_code": new DeviceCodeGrant(...repos)
     };
   }
 

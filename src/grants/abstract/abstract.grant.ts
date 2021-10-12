@@ -7,6 +7,7 @@ import { OAuthException } from "../../exceptions/oauth.exception";
 import { OAuthTokenRepository } from "../../repositories/access_token.repository";
 import { OAuthAuthCodeRepository } from "../../repositories/auth_code.repository";
 import { OAuthClientRepository } from "../../repositories/client.repository";
+import { OAuthDeviceUserCodeRepository } from "../../repositories/deviceuser_code.repository";
 import { OAuthScopeRepository } from "../../repositories/scope.repository";
 import { ExtraAccessTokenFields, OAuthUserRepository } from "../../repositories/user.repository";
 import { AuthorizationRequest } from "../../requests/authorization.request";
@@ -45,6 +46,7 @@ export abstract class AbstractGrant implements GrantInterface {
     "refresh_token",
     "password",
     "implicit",
+    "urn:ietf:params:oauth:grant-type:device_code"
   ];
 
   abstract readonly identifier: GrantIdentifier;
@@ -55,6 +57,7 @@ export abstract class AbstractGrant implements GrantInterface {
     protected readonly tokenRepository: OAuthTokenRepository,
     protected readonly scopeRepository: OAuthScopeRepository,
     protected readonly userRepository: OAuthUserRepository,
+    protected readonly deviceUserCodeRepository: OAuthDeviceUserCodeRepository,
     protected readonly jwt: JwtInterface,
   ) {}
 
